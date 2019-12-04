@@ -1,0 +1,37 @@
+<h2>Login</h2>
+
+
+<div class="example-container">
+
+  
+    <form #userForm="ngForm" (ngSubmit)="loginAPI()" novalidate>
+     
+        {{ userForm.value | json}}
+
+    <br>
+    <label>Username : </label>
+     <input  type="text"  required #name="ngModel" pattern="^[a-z0-9_-]{3,18}$"
+    [class.is-invalid]="name.invalid && name.touched" class="form-control"   name="username" 
+    [(ngModel)]="updateModel.username">
+    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is Required.</small>
+
+    <br>
+    <br>
+
+    <label>Password : </label> 
+    <input type="password" required  #password="ngModel" 
+     [class.is-invalid]="password.invalid && password.touched"
+    class="form-control"  name="password" [(ngModel)]="updateModel.password">
+    <div *ngIf="password.errors && (password.invalid || password.touched)">
+        <small class="text-danger" *ngIf="password.errors.required">Password is Required.</small>
+    </div>
+
+    <br>
+    <br>
+    <br>
+        <button class="btn btn-primary"> Login </button>
+    
+    
+    </form>
+    
+    </div>
